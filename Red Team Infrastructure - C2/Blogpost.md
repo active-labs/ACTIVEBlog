@@ -1,4 +1,4 @@
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-0.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-0.png)
 
 Covenant is an open source .NET command and control framework aimed at making .NET tradecraft easier and being a collaborative C2 for red teamers. It is multi-platform as it is written in .NET core which means it can run natively on Windows, MacOS and Linux. It also supports docker in case the user prefers containers. In this blog post, we will look at installing and running Covenant both natively and in a docker container. Then review some basic usage of the framework.
 
@@ -172,22 +172,22 @@ $ ~/ > ssh -v -N -L 127.0.0.1:7443:127.0.0.1:7443 <USER>@<COVENANT-IP>
 ## Registering a user
 After starting Covenant and the GUI has been reached, you must register an initial user through the web interface. Navigating to the web interface at [https://127.0.0.1:7443](https://127.0.0.1:7443) will allow you to register the initial user:
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-1.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-1.png)
 
 Once the initial user has been registered, open registration will be closed, and new users will have to be created by an Administrative user.
 
 Upon logging into the application you are greeted with your new Covenant dashboard!
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-2.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-2.png)
 
 ## Creating a HTTP listener
 Covenant makes creating a listener super easy. There are two types of listeners included with the framework, bridge and native. Bridge listeners are beyond the scope of this article and can be read about in the documentation [here](https://github.com/cobbr/Covenant/wiki/Bridge-Listeners). Currently, Covenant only has a native `HttpListener`, which is self-explanatory. To set up a listener, click on "Listeners" from the menu and then "Create". 
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-3.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-3.png)
 
 We are dropped into the listener configuration screen where we can change the options applied to the listener.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-4.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-4.png)
 
 The documentation has a very clean description of each of the options so I will include it here for reference.
 
@@ -209,9 +209,9 @@ The following options will need to be configured when creating the listener:
 	
 Once all the required options have been set, clicking on "Create" will create, start the listener and add it to the listener dashboard.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-5.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-5.png)
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-6.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-6.png)
 
 ## Creating a HTTPS listener
 Creating a HTTPS listener is the same as creating the HTTP listener as above with a few small tweaks. The `UseSSL` value will need to be set as true and a `SSLCertificate` needs to be provided in a PFX format. There are a number of different ways to get one of these. Purchase a domain and get a certificate through LetsEncrypt or generate a self-signed certificate. Retrieving a certificate from LetsEncrypt is also beyond the scope of this post and will not be covered here. Google is your friend :).
@@ -236,20 +236,20 @@ Mode                 LastWriteTime         Length Name
 
 Now we can create a new listener with the same options as above, but with the addition of the `UseSSL` variable being `True`. 
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-7.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-7.png)
 
 Now we have the option to upload a `SSlCertificate` and provide the `SSLCertificatePassword`. If you are using the self-signed certificate from Covenant or the standalone CSharp [program](https://github.com/active-labs/covenantCertGeneration), the `SSLCertificatePassword` should be left blank.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-8.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-8.png)
 
 Clicking on "Create" will start our HTTPS listener and now we can generate a launcher that will utilize it!
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-9.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-9.png)
 
 ## Launchers
 "Launchers are used to generate, host, and download binaries, scripts, and one-liners to launch new Grunts." - Covenant [Documentation](https://github.com/cobbr/Covenant/wiki/Launchers)
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-10.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-10.png)
 
 There is no reason to rewrite some of the launcher documentation that is provided in the Covenant wiki as it short, sweet and aptly describes the current launcher types so it has been duplicated here.
 
@@ -271,7 +271,7 @@ Please keep in mind that any of the launchers that rely on DotNetToJScript **may
 ## Creating a binary launcher
 We will use the binary launcher option to create a standalone compiled Dotnet binary as it is straight forward and perfect for an example. Navigating to Launchers > Binary displays a handful of configuration options.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-11.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-11.png)
 
 Other launchers may have some additional configuration options, but these options are common to all launcher types. The configuration options to consider are:
 
@@ -294,32 +294,32 @@ If you select an `ImplantTemplate` with an `SMB` `CommType`:
 
 Since we are generating a Grunt for the HTTPS listener with a self-signed certificate and for the reasons listed above, we can set `ValidateCert` and `UseCertPinning` to false. Since this is an example, I will leave the other options  default, however, on an engagement, these should absolutely be changed. Clicking the "Generate" button will compile the Grunt.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-12.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-12.png)
 
 At the top of the launcher screen, there are 3 tabs "Generate", "Host" and "Code". We just utilized the generate tab to set the launcher options and generate the actual Grunt binary. The Host tab is used to host the launcher on the Covenant server. It has a "Url" option which can be set and then navigated to over the listener.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-13.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-13.png)
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-14.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-14.png)
 
 The Code tab can be used to view the source code of the launcher's stager, "StagerCode":
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-15.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-15.png)
 
 <br />
 
 # Executing a Grunt
 Taking our created binary from above and running it on a system should give us an active Grunt connection. We are not delving into bypassing AV/EDR, obfuscating the Grunt binary, or getting the Grunt on the system as this is out of scope for this blog post. AV was disabled on this machine in order to get the default binary Grunt to execute. We use PowerShell to directly execute the binary, then verify a grunt has checked in using the Covenant GUI.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-16.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-16.png)
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-17.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-17.png)
 
 Once the Grunt checks in, we see a handful of information about the connection, can interact with the Grunt and issue tasks or commands through the web UI using the `Interact` tab.
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-18.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-18.png)
 
-![](https://github.com/active-labs/ACTIVEBlog/blob/main/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-19.png)
+![](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/assets/Red_Team_Infrastructure_-_C2-19.png)
 
 <br />
 
