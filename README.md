@@ -1,0 +1,2 @@
+# ACTIVELABS Blog Posts
+- ![Red Team Infrastructure: C2:](https://github.com/active-labs/ACTIVEBlog/blob/master/Red%20Team%20Infrastructure%20-%20C2/Red%20Team%20Infrastructure%20-%20C2.md) Installing and using Covenant C2
